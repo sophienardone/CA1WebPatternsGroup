@@ -1,3 +1,5 @@
+package musiclibrary;
+
 import java.util.Date;
 
 public class Users {
@@ -54,7 +56,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "musiclibrary.Users{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
