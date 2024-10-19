@@ -96,6 +96,33 @@ public class UsersDaoImpl implements UsersDao {
     }
 
 
+    @Override
+    public boolean validateUser(String username, String password) throws SQLException {
+        boolean isValid = false;
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+        try {
+            Class.forName(driver);
+
+            try (Connection conn = DriverManager.getConnection(url, username, password);
+                 PreparedStatement ps = conn.prepareStatement(query)) {
+
+                ps.setString(1, username);
+                ps.setString(2, password);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        isValid = true;
+                    }
+                }
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return isValid;
+    }
+
+
 }
 
 
