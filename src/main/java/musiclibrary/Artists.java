@@ -1,6 +1,14 @@
 package musiclibrary;
 
+import lombok.*;
+
 import java.time.LocalDateTime;
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@AllArgsConstructor
+
 
 public class Artists {
     private int artistId;
@@ -19,6 +27,8 @@ public class Artists {
         this.date = date;
 
     }
+
+
 
 
 
