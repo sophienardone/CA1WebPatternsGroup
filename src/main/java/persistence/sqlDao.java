@@ -35,7 +35,7 @@ public class sqlDao {
         try{
             conn.close();
         } catch (SQLException e) {
-            System.out.println(LocalDateTime.now() +);;
+            System.out.println(LocalDateTime.now() + "failed to close connection ");
         }
    }
 
