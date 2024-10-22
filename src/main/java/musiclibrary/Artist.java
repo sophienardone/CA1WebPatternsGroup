@@ -10,23 +10,25 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 
-public class Artists {
+public class Artist {
     private int artistId;
     private String name;
     private String genre;
     private String country;
     private LocalDateTime date;
-    private int incrementId;
 
 
-    public Artists(String name, String genre, String country, LocalDateTime date) {
-        artistId = incrementId++;
+
+    public Artist(String name, String genre, String country, LocalDateTime date) {
         this.name = name;
         this.genre = genre;
         this.country = country;
         this.date = date;
-
+        this.artistId = 0;
     }
+
+
+
 
 
 
