@@ -1,6 +1,6 @@
 package persistence;
 
-import musiclibrary.Users;
+import musiclibrary.User;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -15,8 +15,8 @@ public class UsersDaoImpl implements UsersDao {
     String username = "root";
     String password = "";
     @Override
-    public List<Users> getAllUsers(){
-        List<Users> usersList = new ArrayList<>();
+    public List<User> getAllUsers(){
+        List<User> usersList = new ArrayList<>();
 
 
         try{
@@ -26,7 +26,7 @@ public class UsersDaoImpl implements UsersDao {
                 try(PreparedStatement ps = conn.prepareStatement("SELECT * from Users")){
                     try(ResultSet rs = ps.executeQuery()){
                         while(rs.next()){
-                            Users user = new Users(
+                            User user = new User(
                                rs.getInt("user_id"),
                                rs.getString("username"),
                                rs.getString("password"),
@@ -63,7 +63,7 @@ public class UsersDaoImpl implements UsersDao {
     }
 
     @Override
-    public void addUser(Users user) throws SQLException {
+    public void addUser(User user) throws SQLException {
         String query = "INSERT INTO users (username, password, email, credit_card_number, credit_card_expiry, is_active, created_at) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
