@@ -11,3 +11,5 @@ public interface ArtistDao {
 
     Artist getArtistById(int artistId) throws SQLException;
 }
+
+
