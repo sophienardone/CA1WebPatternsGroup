@@ -1,17 +1,17 @@
 package persistence;
 
-import musiclibrary.Users;
+import musiclibrary.User;
 
 import java.util.List;
 
 public interface UsersDao {
-    void addUser(Users user) throws Exception;
+    void addUser(User user) throws Exception;
 
 //    Users getUserByUsername(String username) throws Exception;
 
     boolean validateUser(String username, String password) throws Exception;
 
-    List<Users> getAllUsers() throws Exception;
+    List<User> getAllUsers() throws Exception;
 
 //    void updateUser(Users user) throws Exception;
 //

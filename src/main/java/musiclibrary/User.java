@@ -2,7 +2,7 @@ package musiclibrary;
 
 import java.util.Date;
 
-public class Users {
+public class User {
 
 //CREATE TABLE users (
 //                       user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,7 +26,7 @@ public class Users {
     private Date createdAt;
 
 
-    public Users(int userId, String username, String password, String email, String creditCardNumber, Date creditCardExpiry, boolean isActive, Date createdAt) {
+    public User(int userId, String username, String password, String email, String creditCardNumber, Date creditCardExpiry, boolean isActive, Date createdAt) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -43,7 +43,7 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Users user = (Users) o;
+        User user = (User) o;
         return userId == user.userId;
     }
 
