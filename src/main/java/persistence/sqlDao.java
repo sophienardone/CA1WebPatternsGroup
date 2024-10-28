@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 public class sqlDao {
     private String databaseName = "";
 
+    public sqlDao(){
+
+    }
     public sqlDao(String databaseName) {
         this.databaseName = databaseName;
     }
@@ -33,7 +36,11 @@ public class sqlDao {
 
    public void freeConnection(Connection conn) {
         try{
-            conn.close();
+            if(conn != null){
+                conn.close();
+                conn = null;
+            }
+
         } catch (SQLException e) {
             System.out.println(LocalDateTime.now() + "failed to close connection ");
         }
