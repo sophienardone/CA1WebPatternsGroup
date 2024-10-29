@@ -58,6 +58,15 @@ CREATE TABLE playlist_albums (
                                  FOREIGN KEY (albumID) REFERENCES albums(albumID) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS playlist_songs;
+CREATE TABLE playlist_songs (
+                                playlistID INT NOT NULL,
+                                songID INT NOT NULL,
+                                PRIMARY KEY (playlistID, songID),
+                                FOREIGN KEY (playlistID) REFERENCES playlists(playlistID) ON DELETE CASCADE,
+                                FOREIGN KEY (songID) REFERENCES songs(songID) ON DELETE CASCADE
+);
+
 DROP TABLE IF EXISTS songs;
 CREATE TABLE songs (
                        songID INT AUTO_INCREMENT PRIMARY KEY,
