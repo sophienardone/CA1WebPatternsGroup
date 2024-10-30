@@ -34,7 +34,7 @@ public class User {
     private Date createdAt;
 
 
-    public User(String username, String password, String email, String creditCardNumber, Date creditCardExpiry, boolean isActive, Date createdAt) {
+    public User(String username, String password, String email, String creditCardNumber, Date creditCardExpiry, boolean isActive) {
 
         this.username = username;
         this.password = password;
@@ -42,7 +42,7 @@ public class User {
         this.creditCardNumber = creditCardNumber;
         this.creditCardExpiry = creditCardExpiry;
         this.isActive = isActive;
-        this.createdAt = createdAt;
+
         userId = 0;
     }
 
