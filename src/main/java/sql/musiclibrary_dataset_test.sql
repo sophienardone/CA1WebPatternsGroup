@@ -46,33 +46,6 @@ INSERT INTO playlist_albums (playlistID, albumID) VALUES
                                                       (5, 5), -- The Bodyguard in Greatest Soundtracks
                                                       (5, 6); -- 21 in Greatest Soundtracks
 
-INSERT IGNORE INTO playlist_songs (playlistID, songID) VALUES
-                                                           -- Rock Classics (Playlist 1)
-                                                           (1, 3),  -- Back in Black
-                                                           (1, 4),  -- You Shook Me All Night Long
-
-                                                           -- Pop Hits (Playlist 2)
-                                                           (2, 1),  -- Beat It
-                                                           (2, 2),  -- Billie Jean
-
-                                                           -- Progressive Legends (Playlist 3)
-                                                           (3, 5),  -- Money
-
-                                                           -- Soulful Vibes (Playlist 4)
-                                                           (4, 7),  -- I Will Always Love You
-
-                                                           -- Greatest Soundtracks (Playlist 5)
-                                                           (5, 7);  -- I Will Always Love You
-
-
-
-
-
-
-
-
-
-
 INSERT INTO songs (title, albumID, duration) VALUES
                                                  ('Beat It', 1, 258),
                                                  ('Billie Jean', 1, 293),
