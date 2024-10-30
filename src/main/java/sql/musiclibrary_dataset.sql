@@ -28,12 +28,12 @@ INSERT INTO albums (title, artistID, releaseDate, genre, label, duration, price)
                                                                                      ('Hotel California', 7, '1976-12-08', 'Rock', 'Asylum', 2608, 12.49),
                                                                                      ('Abbey Road', 8, '1969-09-26', 'Rock', 'Apple', 2843, 14.49);
 
-INSERT INTO playlists (userID, name, description, creationDate) VALUES
-                                                                    (1, 'Rock Classics', 'A collection of timeless rock albums.', '2024-10-15'),
-                                                                    (1, 'Pop Hits', 'Best pop albums of all time.', '2024-10-15'),
-                                                                    (2, 'Progressive Legends', 'Great albums from progressive rock bands.', '2024-10-15'),
-                                                                    (2, 'Soulful Vibes', 'A collection of R&B and soul music.', '2024-10-15'),
-                                                                    (3, 'Greatest Soundtracks', 'Top movie soundtracks of all time.', '2024-10-15');
+INSERT INTO playlists (userID, name, description, creationDate, is_public) VALUES
+                                                                               (1, 'Rock Classics', 'A collection of timeless rock albums.', '2024-10-15', TRUE),
+                                                                               (1, 'Pop Hits', 'Best pop albums of all time.', '2024-10-15', TRUE),
+                                                                               (2, 'Progressive Legends', 'Great albums from progressive rock bands.', '2024-10-15', TRUE),
+                                                                               (2, 'Soulful Vibes', 'A collection of R&B and soul music.', '2024-10-15', TRUE),
+                                                                               (3, 'Greatest Soundtracks', 'Top movie soundtracks of all time.', '2024-10-15', TRUE);
 
 INSERT INTO playlist_albums (playlistID, albumID) VALUES
                                                       (1, 2), -- Back in Black in Rock Classics
