@@ -54,12 +54,34 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
 
     @Override
     public void removeSongFromPlaylist(int playlistID, int songID) {
+            Connection conn = super.getConnection();
+            String sql = "DELETE FROM playlist_song WHERE playlist_id = ? AND song_id = ?";
 
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, playlistID);
+                ps.setInt(2, songID);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(LocalDateTime.now() + ": Problem occurred while trying to remove song from playlist");
+                System.out.println("\tError: " + e.getMessage());
+            }
     }
 
     @Override
     public void renamePlaylist(int playlistID, String newName) {
+        Connection conn = super.getConnection();
+        String sql = "UPDATE Playlists SET name = ? WHERE playlistID = ?";
 
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newName);
+            ps.setInt(2, playlistID);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(LocalDateTime.now() + ": Problem with renaming the playlist");
+            System.out.println("\tError: " + e.getMessage());
+        }
     }
 
     @Override
