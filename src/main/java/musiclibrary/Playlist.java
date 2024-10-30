@@ -28,6 +28,7 @@ public class Playlist {
     private String name;
     private String description;
     private LocalDateTime creationDate;
+    private boolean isPublic;
 
 
     public Playlist(int userID, String name, String description, LocalDateTime creationDate) {
@@ -36,6 +37,16 @@ public class Playlist {
         this.description = description;
         this.creationDate = creationDate;
         playlistID = 0;
+        this.isPublic = false;
+    }
+
+    public Playlist(int userID, String name, String description, LocalDateTime creationDate, boolean isPublic) {
+        this.userID = userID;
+        this.name = name;
+        this.description = description;
+        this.creationDate = creationDate;
+        this.playlistID = 0;
+        this.isPublic = isPublic;
     }
 
 
