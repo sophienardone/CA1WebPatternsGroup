@@ -45,6 +45,7 @@ CREATE TABLE playlists (
                            name VARCHAR(100) NOT NULL,
                            description VARCHAR(255),
                            creationDate DATE NOT NULL,
+                           is_public BOOLEAN DEFAULT TRUE,
                            FOREIGN KEY (userID) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
