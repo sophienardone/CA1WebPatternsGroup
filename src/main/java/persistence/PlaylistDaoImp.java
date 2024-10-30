@@ -2,12 +2,10 @@ package persistence;
 
 import musiclibrary.Playlist;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
@@ -23,7 +21,7 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
             ps.setInt(1, playlist.getUserID());
             ps.setString(2, playlist.getName());
             ps.setString(3, playlist.getDescription());
-            ps.setTimestamp(4, Timestamp.valueOf(playlist.getCreationDate()));
+            ps.setDate(4, (Date) playlist.getCreationDate());
             ps.setBoolean(5, playlist.isPublic());
             ps.executeUpdate();
 
@@ -86,6 +84,33 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
 
     @Override
     public List<Playlist> getUserPaylist(int userID) {
-        return List.of();
+        List<Playlist> userPlaylist = new ArrayList<>();
+
+        Connection conn = super.getConnection();
+        String sql = " SELECT * FROM playlists WHERE userID = ?";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, userID);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Playlist playlist = new Playlist();
+                playlist.setPlaylistID(rs.getInt("playlistID"));
+                playlist.setUserID(rs.getInt("userID"));
+                playlist.setName(rs.getString("name"));
+                playlist.setDescription(rs.getString("description"));
+                playlist.setCreationDate(rs.getDate("creationDate"));
+                playlist.setPublic(rs.getBoolean("isPublic"));
+
+                userPlaylist.add(playlist);
+            }
+
+        }catch (SQLException e){
+            System.out.println(LocalDateTime.now() + ": Problem occurred while while getting lists of the playlist ");
+            System.out.println("\tError: " + e.getMessage());
+        }
+
+        return userPlaylist;
     }
 }
