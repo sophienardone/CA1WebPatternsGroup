@@ -10,6 +10,12 @@ import java.util.List;
 public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
 
 
+    /**
+     * this method takes in playlist object type as a parameter and creates a specified playlist
+     * @param playlist Playlist object containing all the details for a playlist to be created such as name,description
+     * @return true if the playlist is created, false otherwise
+     * @throws SQLException if a database access occurs while creating playlist
+     */
     @Override
     public boolean createPlaylist(Playlist playlist) {
         int rowsEffected = 0;
@@ -39,6 +45,13 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
         }
     }
 
+    /**
+     * this method adds specified song to the playlist
+     * @param playlistID the id of the playlist the song will be added to
+     * @param songID the id of the song to be added to the playlist
+     * @return true if addingSong performed correctly otherwise false
+     * @throws SQLException if a database access occurs while creating playlist
+     */
     @Override
     public boolean addingSongToPlaylist(int playlistID, int songID) {
         int rowsEffected = 0;
@@ -64,6 +77,13 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
         }
     }
 
+    /**
+     * removes song from specified playlist in the database
+     * @param playlistID the id of the playlist from which the song will be removed from
+     * @param songID the id of the song from wto be removed from playlist
+     * @return true if removingSong Performed and false otherwise
+     * @throws SQLException if a database access occurs while creating playlist
+     */
     @Override
     public boolean removeSongFromPlaylist(int playlistID, int songID) {
         int rowsEffected = 0;
@@ -91,6 +111,13 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
 
     }
 
+    /**
+     *this method renames a existing playlist in the database
+     * @param playlistID the id of the playlist in which will be changed
+     * @param newName the new name the playlist will have
+     * @return true if the renamePlaylist performs by checking if the rows where effected, false otherwise
+     * @throws SQLException if a database access occurs while creating playlist
+     */
     @Override
     public boolean renamePlaylist(int playlistID, String newName) {
        int rowsEffected = 0;
@@ -116,6 +143,12 @@ public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
         }
     }
 
+    /**
+     * this method retrieves a  specified list of playlist
+     * @param userID the id of the user whose playlist are retrieved
+     * @return a list of object type playlist if no playlist it will return empty list
+     * @throws SQLException if a database access occurs while creating playlist
+     */
     @Override
     public List<Playlist> getUserPaylist(int userID) {
         List<Playlist> userPlaylist = new ArrayList<>();
