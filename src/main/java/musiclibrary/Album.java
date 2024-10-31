@@ -89,7 +89,37 @@ public class Album {
         return price;
     }
 
+    public void setAlbumID(int albumID) {
+        this.albumID = albumID;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtistID(int artistID) {
+        this.artistID = artistID;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     @Override
     public boolean equals(Object o) {
