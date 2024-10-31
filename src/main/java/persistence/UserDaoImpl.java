@@ -7,14 +7,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl implements UsersDao {
+public class UserDaoImpl extends sqlDao implements UsersDao {
 
-    private final sqlDao sqlDao;
 
-    public UserDaoImpl(sqlDao sqlDao) {
-        this.sqlDao = sqlDao;
+
+    public UserDaoImpl(String databaseName){
+        super(databaseName);
     }
-
 
     @Override
     public List<User> getAllUsers() {
@@ -22,7 +21,7 @@ public class UserDaoImpl implements UsersDao {
         String sqlquery = "SELECT * FROM User";
 
 
-        try (Connection connection = sqlDao.getConnection();
+        try (Connection connection = super.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlquery);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
@@ -47,8 +46,9 @@ public class UserDaoImpl implements UsersDao {
     }
 
 
+
     @Override
-    public void addUser(User user) throws SQLException {
+    public boolean addUser(User user) throws SQLException {
         String query = "INSERT INTO users (username, password, email, credit_card_number, credit_card_expiry, is_active, created_at) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UsersDao {
         }
 
 
-        try (Connection connection = sqlDao.getConnection();
+        try (Connection connection = super.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, user.getUsername());
@@ -70,9 +70,11 @@ public class UserDaoImpl implements UsersDao {
             preparedStatement.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
 
             preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 
@@ -82,7 +84,7 @@ public class UserDaoImpl implements UsersDao {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 
 
-        try (Connection connection = sqlDao.getConnection();
+        try (Connection connection = super.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, username);

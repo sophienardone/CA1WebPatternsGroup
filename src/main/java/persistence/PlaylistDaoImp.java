@@ -10,6 +10,10 @@ import java.util.List;
 public class PlaylistDaoImp extends sqlDao implements PlaylistDao {
 
 
+    public PlaylistDaoImp(String databaseName) {
+        super(databaseName);
+    }
+
     /**
      * this method takes in playlist object type as a parameter and creates a specified playlist
      * @param playlist Playlist object containing all the details for a playlist to be created such as name,description
