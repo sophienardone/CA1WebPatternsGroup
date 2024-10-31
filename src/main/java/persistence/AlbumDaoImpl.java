@@ -9,14 +9,21 @@ import java.util.List;
 
 public class AlbumDaoImpl extends sqlDao implements AlbumDao {
 
-
-    public AlbumDaoImpl(String databaseName) {
+    public AlbumDaoImpl(String databaseName){
         super(databaseName);
     }
 
+    public AlbumDaoImpl(){
+        super();
+    }
+
+
+
+
     @Override
-    public void addAlbum(Album album) throws Exception {
+    public int addAlbum(Album album)  {
         String sql = "INSERT INTO albums (title, artistID, releaseDate, genre, label, duration, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        int generatedId = -1;
         try (Connection conn = super.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -28,15 +35,28 @@ public class AlbumDaoImpl extends sqlDao implements AlbumDao {
             ps.setInt(6, album.getDuration());
             ps.setDouble(7, album.getPrice());
 
-            ps.executeUpdate();
+         int rowsAffected =    ps.executeUpdate();
+
+            if (rowsAffected > 0){
+                try (Statement statement = conn.createStatement()) {
+                    //get the id of the last inserted row
+                    ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID()");
+                    if (rs.next()) {
+                        generatedId = rs.getInt(1);
+                    }
+                }
+            }
         } catch (SQLException ex) {
             System.out.println(LocalDateTime.now() + ": An SQLException occurred while adding an album.");
             ex.printStackTrace();
         }
+        return generatedId;
     }
 
+
+
     @Override
-    public Album getAlbumById(int albumID) throws Exception {
+    public Album getAlbumById(int albumID)  {
         String sql = "SELECT * FROM albums WHERE albumID = ?";
         try (Connection conn = super.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -59,12 +79,14 @@ public class AlbumDaoImpl extends sqlDao implements AlbumDao {
                 System.out.println(LocalDateTime.now() + ": An SQLException occurred while retrieving album by ID.");
                 ex.printStackTrace();
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return null; // If no album is found
     }
 
     @Override
-    public List<Album> getAlbumsByArtistId(int artistID) throws Exception {
+    public List<Album> getAlbumsByArtistId(int artistID) {
         List<Album> albums = new ArrayList<>();
         String sql = "SELECT * FROM albums WHERE artistID = ?";
         try (Connection conn = super.getConnection();
@@ -89,6 +111,8 @@ public class AlbumDaoImpl extends sqlDao implements AlbumDao {
                 System.out.println(LocalDateTime.now() + ": An SQLException occurred while retrieving albums by artist ID.");
                 ex.printStackTrace();
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return albums;
     }
