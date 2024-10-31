@@ -1,4 +1,4 @@
-USE musiclibrary;
+USE musiclibrary_test;
 
 INSERT INTO users (username, password, email, credit_card_number, credit_card_expiry, is_active, created_at) VALUES
                                                                                                                  ('john_reilly', 'john123', 'john.reilly@example.com', '4111111111111111', '2025-12-31', TRUE, '2024-10-15'),

@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS musiclibrary;
-CREATE DATABASE IF NOT EXISTS musiclibrary;
+DROP DATABASE IF EXISTS musiclibrary_test;
+CREATE DATABASE IF NOT EXISTS musiclibrary_test;
 
-USE musiclibrary;
+USE musiclibrary_test;
 
 
 DROP TABLE IF EXISTS users;
