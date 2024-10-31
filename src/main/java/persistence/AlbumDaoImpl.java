@@ -18,7 +18,12 @@ public class AlbumDaoImpl extends sqlDao implements AlbumDao {
     }
 
 
-
+    /**
+     * Inserts a new album into the "albums" table and returns its generated ID.
+     *
+     * @param album The Album object with album details (title, artist ID, release date, genre, label, duration, and price).
+     * @return The ID of the newly inserted album, or -1 if insertion failed.
+     */
 
     @Override
     public int addAlbum(Album album)  {
@@ -54,6 +59,12 @@ public class AlbumDaoImpl extends sqlDao implements AlbumDao {
     }
 
 
+    /**
+     * Retrieves an album from the "albums" table by its ID.
+     *
+     * @param albumID The ID of the album to retrieve.
+     * @return  The Album object if found;  null if no matching album exists.
+     */
 
     @Override
     public Album getAlbumById(int albumID)  {
@@ -85,6 +96,13 @@ public class AlbumDaoImpl extends sqlDao implements AlbumDao {
         return null; // If no album is found
     }
 
+
+    /**
+     * Retrieves all albums by a specific artist from the "albums" table.
+     *
+     * @param artistID The ID of the artist whose albums are to be retrieved.
+     * @return A list of  Album objects by the specified artist; an empty list if no albums are found.
+     */
     @Override
     public List<Album> getAlbumsByArtistId(int artistID) {
         List<Album> albums = new ArrayList<>();
