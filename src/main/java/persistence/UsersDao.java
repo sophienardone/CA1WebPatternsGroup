@@ -5,7 +5,7 @@ import musiclibrary.User;
 import java.util.List;
 
 public interface UsersDao {
-    void addUser(User user) throws Exception;
+    boolean addUser(User user) throws Exception;
 
 //    Users getUserByUsername(String username) throws Exception;
 

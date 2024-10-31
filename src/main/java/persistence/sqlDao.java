@@ -18,7 +18,7 @@ public class sqlDao {
     }
     public Connection getConnection() {
             String driver = "com.mysql.cj.jdbc.Driver";
-            String url = "jdbc:mysql://127.0.0.1:3306/musiclibrary" + databaseName;
+            String url = "jdbc:mysql://127.0.0.1:3306/" + databaseName;
             String username = "root";
             String password = "";
             Connection conn = null;
