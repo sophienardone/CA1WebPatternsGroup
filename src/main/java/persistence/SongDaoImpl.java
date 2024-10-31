@@ -17,7 +17,13 @@ public class SongDaoImpl extends sqlDao implements SongDao {
         super();
     }
 
-
+    /**
+     * Adds a new song to the "songs" table and returns the generated song ID.
+     *
+     * @param song The Song object containing song details to be added.
+     * @return The generated ID of the added song, or -1 if insertion failed.
+     * @throws Exception If a database access error occurs.
+     */
 
     @Override
     public int addSong(Song song) throws Exception {
@@ -50,7 +56,12 @@ public class SongDaoImpl extends sqlDao implements SongDao {
         return generatedId;
     }
 
-
+    /**
+     * Deletes a song from the "songs" table based on the provided song ID.
+     *
+     * @param songID The ID of the song to delete.
+     * @throws Exception If a database access error occurs.
+     */
     @Override
     public void deleteSong(int songID) throws Exception {
         String sql = "DELETE FROM songs WHERE songID = ?";
@@ -64,6 +75,13 @@ public class SongDaoImpl extends sqlDao implements SongDao {
             ex.printStackTrace();
         }
     }
+
+    /**
+     * Retrieves a song from the "songs" table by its ID.
+     *
+     * @param songID The ID of the song to retrieve.
+     * @return The Song object if found; otherwise, null.
+     */
 
     public Song getSongById(int songID) {
         Song song = null;
