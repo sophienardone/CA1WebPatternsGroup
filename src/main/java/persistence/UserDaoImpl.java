@@ -11,15 +11,26 @@ public class UserDaoImpl implements UsersDao {
 
     private final sqlDao sqlDao;
 
+
+    /**
+     * Constructs a UserDaoImpl with the specified sqlDao.
+     *
+     * @param sqlDao the sqlDao used to obtain database connections
+     */
     public UserDaoImpl(sqlDao sqlDao) {
         this.sqlDao = sqlDao;
     }
 
 
+    /**
+     * Retrieves all users from the database.
+     *
+     * @return a List of User objects representing all users in the database.
+     */
     @Override
     public List<User> getAllUsers() {
         List<User> usersList = new ArrayList<>();
-        String sqlquery = "SELECT * FROM User";
+        String sqlquery = "SELECT * FROM Users";
 
 
         try (Connection connection = sqlDao.getConnection();
@@ -47,8 +58,15 @@ public class UserDaoImpl implements UsersDao {
     }
 
 
+    /**
+     * Adds a new user to the database.
+     *
+     * @param user the User object containing the user information to be added.
+     * @throws SQLException             if a database access error occurs.
+     * @throws IllegalArgumentException if the credit card number is invalid (not 16 digits).
+     */
     @Override
-    public void addUser(User user) throws SQLException {
+    public boolean addUser(User user) throws SQLException {
         String query = "INSERT INTO users (username, password, email, credit_card_number, credit_card_expiry, is_active, created_at) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -73,9 +91,19 @@ public class UserDaoImpl implements UsersDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 
+
+    /**
+     * Validates a user based on username and password.
+     *
+     * @param username the username of the user to be validated.
+     * @param password the password of the user to be validated.
+     * @return true if the user is valid (exists in the database), false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean validateUser(String username, String password) throws SQLException {
         boolean isValid = false;
