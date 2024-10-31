@@ -9,6 +9,10 @@ import java.time.LocalDateTime;
 
 public class SongDaoImpl extends sqlDao implements SongDao {
 
+    public SongDaoImpl(String databaseName) {
+        super(databaseName);
+    }
+
     @Override
     public void addSong(Song song) throws Exception {
         String sql = "INSERT INTO songs (title, albumID, duration) VALUES (?, ?, ?)";

@@ -10,7 +10,9 @@ import java.util.List;
 public class AlbumDaoImpl extends sqlDao implements AlbumDao {
 
 
-
+    public AlbumDaoImpl(String databaseName) {
+        super(databaseName);
+    }
 
     @Override
     public void addAlbum(Album album) throws Exception {

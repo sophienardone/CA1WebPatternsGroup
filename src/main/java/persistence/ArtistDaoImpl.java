@@ -11,12 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistDaoImpl implements ArtistDao {
+public class ArtistDaoImpl extends sqlDao implements ArtistDao {
 
-    private final sqlDao sqlDao;
 
-    public ArtistDaoImpl(sqlDao sqlDao) {
-        this.sqlDao = sqlDao;
+    public ArtistDaoImpl(String databaseName) {
+        super(databaseName);
     }
 
     @Override
@@ -24,7 +23,7 @@ public class ArtistDaoImpl implements ArtistDao {
         List<Artist> artists = new ArrayList<>();
         String sqlquery = "SELECT * FROM Artists";
 
-        try (Connection connection = sqlDao.getConnection();
+        try (Connection connection = super.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlquery);
              ResultSet resultset = preparedStatement.executeQuery()) {
 
@@ -48,7 +47,7 @@ public class ArtistDaoImpl implements ArtistDao {
         Artist artist = null;
         String sqlquery = "SELECT * FROM artists WHERE artistid = ?";
 
-        try (Connection connection = sqlDao.getConnection();
+        try (Connection connection = super.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlquery)) {
 
             preparedStatement.setInt(1, artistId);
