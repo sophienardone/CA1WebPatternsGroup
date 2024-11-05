@@ -1,4 +1,4 @@
-USE musiclibrary;
+USE musiclibrary_test;
 
 INSERT INTO users (username, password, email, credit_card_number, credit_card_expiry, is_active, created_at) VALUES
                                                                                                                  ('john_reilly', 'john123', 'john.reilly@example.com', '4111111111111111', '2025-12-31', TRUE, '2024-10-15'),
@@ -28,12 +28,12 @@ INSERT INTO albums (title, artistID, releaseDate, genre, label, duration, price)
                                                                                      ('Hotel California', 7, '1976-12-08', 'Rock', 'Asylum', 2608, 12.49),
                                                                                      ('Abbey Road', 8, '1969-09-26', 'Rock', 'Apple', 2843, 14.49);
 
-INSERT INTO playlists (userID, name, description, creationDate) VALUES
-                                                                    (1, 'Rock Classics', 'A collection of timeless rock albums.', '2024-10-15'),
-                                                                    (1, 'Pop Hits', 'Best pop albums of all time.', '2024-10-15'),
-                                                                    (2, 'Progressive Legends', 'Great albums from progressive rock bands.', '2024-10-15'),
-                                                                    (2, 'Soulful Vibes', 'A collection of R&B and soul music.', '2024-10-15'),
-                                                                    (3, 'Greatest Soundtracks', 'Top movie soundtracks of all time.', '2024-10-15');
+INSERT INTO playlists (userID, name, description, creationDate, is_public) VALUES
+                                                                               (1, 'Rock Classics', 'A collection of timeless rock albums.', '2024-10-15', TRUE),
+                                                                               (1, 'Pop Hits', 'Best pop albums of all time.', '2024-10-15', TRUE),
+                                                                               (2, 'Progressive Legends', 'Great albums from progressive rock bands.', '2024-10-15', TRUE),
+                                                                               (2, 'Soulful Vibes', 'A collection of R&B and soul music.', '2024-10-15', TRUE),
+                                                                               (3, 'Greatest Soundtracks', 'Top movie soundtracks of all time.', '2024-10-15', TRUE);
 
 INSERT INTO playlist_albums (playlistID, albumID) VALUES
                                                       (1, 2), -- Back in Black in Rock Classics
@@ -45,6 +45,33 @@ INSERT INTO playlist_albums (playlistID, albumID) VALUES
                                                       (4, 5), -- The Bodyguard in Soulful Vibes
                                                       (5, 5), -- The Bodyguard in Greatest Soundtracks
                                                       (5, 6); -- 21 in Greatest Soundtracks
+
+INSERT IGNORE INTO playlist_songs (playlistID, songID) VALUES
+                                                           -- Rock Classics (Playlist 1)
+                                                           (1, 3),  -- Back in Black
+                                                           (1, 4),  -- You Shook Me All Night Long
+
+                                                           -- Pop Hits (Playlist 2)
+                                                           (2, 1),  -- Beat It
+                                                           (2, 2),  -- Billie Jean
+
+                                                           -- Progressive Legends (Playlist 3)
+                                                           (3, 5),  -- Money
+
+                                                           -- Soulful Vibes (Playlist 4)
+                                                           (4, 7),  -- I Will Always Love You
+
+                                                           -- Greatest Soundtracks (Playlist 5)
+                                                           (5, 7);  -- I Will Always Love You
+
+
+
+
+
+
+
+
+
 
 INSERT INTO songs (title, albumID, duration) VALUES
                                                  ('Beat It', 1, 258),

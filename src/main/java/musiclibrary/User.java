@@ -1,7 +1,15 @@
 package musiclibrary;
 
+import lombok.*;
+
 import java.util.Date;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class User {
 
 //CREATE TABLE users (
@@ -26,79 +34,20 @@ public class User {
     private Date createdAt;
 
 
-    public User(int userId, String username, String password, String email, String creditCardNumber, Date creditCardExpiry, boolean isActive, Date createdAt) {
-        this.userId = userId;
+    public User(String username, String password, String email, String creditCardNumber, Date creditCardExpiry, boolean isActive) {
+
         this.username = username;
         this.password = password;
         this.email = email;
         this.creditCardNumber = creditCardNumber;
         this.creditCardExpiry = creditCardExpiry;
         this.isActive = isActive;
-        this.createdAt = createdAt;
+
+        userId = 0;
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
-        return userId == user.userId;
-    }
-
-
-    @Override
-    public int hashCode() {
-        return userId;
-    }
-
-
-    @Override
-    public String toString() {
-        return "musiclibrary.Users{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", creditCardNumber='" + creditCardNumber + '\'' +
-                ", creditCardExpiry=" + creditCardExpiry +
-                ", isActive=" + isActive +
-                ", createdAt=" + createdAt +
-                '}';
-    }
-
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCreditCardNumber() {
-        return creditCardNumber;
-    }
-
-    public Date getCreditCardExpiry() {
-        return creditCardExpiry;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 
 
 

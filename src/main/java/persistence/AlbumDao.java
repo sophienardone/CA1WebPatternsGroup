@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface AlbumDao {
     // Adds a new album to the database
-    void addAlbum(Album album) throws Exception;
+    int addAlbum(Album album) ;
 
     // Retrieves a specific album by its albumID
-    Album getAlbumById(int albumID) throws Exception;
+    Album getAlbumById(int albumID) ;
 
     // Retrieves all albums by a specific artistID
-    List<Album> getAlbumsByArtistId(int artistID) throws Exception;
+    List<Album> getAlbumsByArtistId(int artistID) ;
 
 }

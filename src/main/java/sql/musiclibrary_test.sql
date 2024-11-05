@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS musiclibrary;
-CREATE DATABASE IF NOT EXISTS musiclibrary;
+DROP DATABASE IF EXISTS musiclibrary_test;
+CREATE DATABASE IF NOT EXISTS musiclibrary_test;
 
-USE musiclibrary;
+USE musiclibrary_test;
 
 
 DROP TABLE IF EXISTS users;
@@ -45,6 +45,7 @@ CREATE TABLE playlists (
                            name VARCHAR(100) NOT NULL,
                            description VARCHAR(255),
                            creationDate DATE NOT NULL,
+                           is_public BOOLEAN DEFAULT TRUE,
                            FOREIGN KEY (userID) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
