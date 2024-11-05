@@ -1,5 +1,6 @@
 import musiclibrary.Artist;
 import org.junit.Test;
+import persistence.ArtistDao;
 import persistence.ArtistDaoImpl;
 import persistence.sqlDao;
 
@@ -18,21 +19,23 @@ public class ArtistDaoImplTest {
 
 
     public ArtistDaoImplTest() {
-        sqlDao = new sqlDao("musiclibrary_test");
-        artistDaoImpl = new ArtistDaoImpl(sqlDao);
+     //   sqlDao = new sqlDao("musiclibrary_test");
+       // artistDaoImpl = new ArtistDaoImpl(sqlDao);
     }
 
 
     @Test
     public void testAddArtist() {
+
+        ArtistDao artistDao = new ArtistDaoImpl("musiclibrary_test");
         try {
             // Create a new Artist instance
             Artist artist = new Artist("Bryson Tiller", "Rap", "USA", LocalDateTime.now());
-            int artistId = artistDaoImpl.addArtist(artist);
+            int artistId = artistDao.addArtist(artist);
 
             assertTrue(artistId > 0, "The artist ID should be a positive integer.");
 
-            List<Artist> artists = artistDaoImpl.getAllArtists();
+            List<Artist> artists = artistDao.getAllArtists();
             boolean artistExists = false;
             for (Artist a : artists) {
                 if (a.getArtistId() == artistId) {
@@ -49,11 +52,13 @@ public class ArtistDaoImplTest {
 
     @Test
     public void testGetAllArtists() {
+        ArtistDao artistDao = new ArtistDaoImpl("musiclibrary_test");
+
         try {
             Artist artist = new Artist("Masego", "jazz", "USA", LocalDateTime.now());
-            artistDaoImpl.addArtist(artist);
+            artistDao.addArtist(artist);
 
-            List<Artist> artists = artistDaoImpl.getAllArtists();
+            List<Artist> artists = artistDao.getAllArtists();
 
             assertFalse(artists.isEmpty(), "The list of artists should not be empty.");
 
@@ -73,11 +78,13 @@ public class ArtistDaoImplTest {
 
     @Test
     public void testGetArtistById() {
+        ArtistDao artistDao = new ArtistDaoImpl("musiclibrary_test");
+
         try {
             Artist artist = new Artist("Tate McRae", "Pop", "USA", LocalDateTime.now());
-            int artistId = artistDaoImpl.addArtist(artist);
+            int artistId = artistDao.addArtist(artist);
 
-            Artist fetchedArtist = artistDaoImpl.getArtistById(artistId);
+            Artist fetchedArtist = artistDao.getArtistById(artistId);
 
             assertNotNull(fetchedArtist, "The artist should not be null.");
 
@@ -87,4 +94,6 @@ public class ArtistDaoImplTest {
             fail("Exception occurred during getArtistById test: " + e.getMessage());
         }
     }
+
+
 }

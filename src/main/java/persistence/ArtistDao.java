@@ -10,6 +10,8 @@ public interface ArtistDao {
     List<Artist> getAllArtists() throws SQLException;
 
     Artist getArtistById(int artistId) throws SQLException;
+
+    public int addArtist(Artist artist) throws SQLException;
 }
 
 
